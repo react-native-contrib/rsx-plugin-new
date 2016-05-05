@@ -1,0 +1,24 @@
+{
+  "name": "rsx-plugin-new",
+  "version": "0.1.0",
+  "description": "A project creation plugin for the RSX CLI utility",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-native-contrib/rsx-plugin-new.git"
+  },
+  "author": "Hassan Khan <contact@hassankhan.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/react-native-contrib/rsx-plugin-new/issues"
+  },
+  "homepage": "https://github.com/react-native-contrib/rsx-plugin-new#readme",
+  "dependencies": {
+    "rsx-common": "^0.1.1",
+    "rsx-generator-base": "^0.1.0",
+    "yeoman-environment": "^1.6.1"
+  }
+}
