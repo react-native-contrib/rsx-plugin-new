@@ -9,7 +9,7 @@ const registerGenerators = () => {
 }
 
 const generatePlatform = (platform) => {
-    utils.process.run(`rsx platforms add ${platform}`, () => {
+    utils.process.run(`rsx platforms add ${platform}`)(() => {
         log.info(`The ${platform} platform was added successfully`);
     });
 };
