@@ -1,38 +1,32 @@
-const spawnSync = require('child_process').spawnSync;
-const fs = require('fs');
-const path = require('path');
+const path  = require('path');
 const utils = require('rsx-common');
-const yeoman = require('yeoman-environment');
+const env   = require('yeoman-environment').createEnv();
+
 const log = utils.log;
-const spawnOpts = {
-    stdio: 'inherit',
-    stdin: 'inherit',
-};
+
+const registerGenerators = () => {
+    env.register(require.resolve('rsx-generator-base'), 'rsx:app');
+}
 
 const generatePlatform = (platform) => {
-    var res = spawnSync('rsx', ['platforms', 'add', platform], spawnOpts);
-
-    if (res.status) {
-        process.exit(res.status);
-    }
+    utils.process.run(`rsx platforms add ${platform}`, () => {
+        log.info(`The ${platform} platform was added successfully`);
+    });
 };
 
 module.exports = function newProject(args, callback) {
-    log.heading = 'rsx-new';
-    const rootPath = process.cwd();
-    const name = args[0];
+    log.heading     = 'rsx-new';
+    const name      = args[0];
     const platforms = (typeof args[1] === 'string') ? args[1].split(',') : ['ios', 'android'];
 
+    const rootPath    = process.cwd();
     const projectPath = path.join(rootPath, name);
 
-    if (!fs.existsSync(projectPath)) {
-        fs.mkdirSync(projectPath);
-    }
-
+    utils.path.makeDirectory(projectPath);
     process.chdir(projectPath);
 
-    const env = yeoman.createEnv();
-    env.register(require.resolve('rsx-generator-base'), 'rsx:app');
+    registerGenerators();
+
     env.run(['rsx:app', name], () => {
         platforms.forEach(generatePlatform);
         process.chdir(rootPath);
