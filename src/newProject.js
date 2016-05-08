@@ -1,11 +1,13 @@
-const path  = require('path');
-const utils = require('rsx-common');
-const env   = require('yeoman-environment').createEnv();
+const fs     = require('fs');
+const path   = require('path');
+const utils  = require('rsx-common');
+const yeoman = require('yeoman-environment');
 
 const log = utils.log;
 
-const registerGenerators = () => {
+const registerGenerators = (env) => {
     env.register(require.resolve('rsx-generator-base'), 'rsx:app');
+    return env;
 };
 
 const generatePlatform = (platform) => {
@@ -22,11 +24,13 @@ module.exports = function newProject(args, callback) {
     const rootPath    = process.cwd();
     const projectPath = path.join(rootPath, name);
 
-    utils.path.makeDirectory(projectPath);
+    if (!fs.existsSync(projectPath)) {
+        fs.mkdirSync(projectPath);
+    }
+
     process.chdir(projectPath);
 
-    registerGenerators();
-
+    const env = registerGenerators(yeoman.createEnv());
     env.run(['rsx:app', name], () => {
         platforms.forEach(generatePlatform);
         process.chdir(rootPath);
