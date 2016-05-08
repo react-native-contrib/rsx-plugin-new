@@ -6,7 +6,7 @@ const log = utils.log;
 
 const registerGenerators = () => {
     env.register(require.resolve('rsx-generator-base'), 'rsx:app');
-}
+};
 
 const generatePlatform = (platform) => {
     utils.process.run(`rsx platforms add ${platform}`)(() => {
@@ -17,7 +17,7 @@ const generatePlatform = (platform) => {
 module.exports = function newProject(args, callback) {
     log.heading     = 'rsx-new';
     const name      = args[0];
-    const platforms = (typeof args[1] === 'string') ? args[1].split(',') : ['ios', 'android'];
+    const platforms = typeof args[1] === 'string' ? args[1].split(',') : ['ios', 'android'];
 
     const rootPath    = process.cwd();
     const projectPath = path.join(rootPath, name);
