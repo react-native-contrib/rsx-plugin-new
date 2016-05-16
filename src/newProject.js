@@ -1,10 +1,10 @@
 'use strict';
 
-const path   = require('path');
+let path   = require('path');
 let utils  = require('rsx-common');
 let yeoman = require('yeoman-environment');
 
-const log = utils.log;
+let log = utils.log;
 
 /**
  * Registers any Yeoman generators with the environment.
@@ -41,17 +41,17 @@ const generatePlatform = (platform) => {
  */
 module.exports = function newProject(args, callback) {
     log.heading     = 'rsx-new';
-    const name      = args[0];
-    const platforms = typeof args[1] === 'string' ? args[1].split(',') : ['ios', 'android'];
+    let name      = args[0];
+    let platforms = typeof args[1] === 'string' ? args[1].split(',') : ['ios', 'android'];
 
-    const rootPath    = process.cwd();
-    const projectPath = path.join(rootPath, name);
+    let rootPath    = process.cwd();
+    let projectPath = path.join(rootPath, name);
 
     utils.path.makeDirectory(projectPath);
     process.chdir(projectPath);
     log.info(`A new project has been created in ${projectPath}/`);
 
-    const env = registerGenerators(yeoman.createEnv());
+    let env = registerGenerators(yeoman.createEnv());
     env.run(['rsx:app', name], () => {
         platforms.forEach(generatePlatform);
         process.chdir(rootPath);

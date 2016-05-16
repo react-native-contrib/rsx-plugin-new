@@ -1,13 +1,15 @@
 'use strict';
 
-const chai = require('chai');
-const sinon = require('sinon');
-const rewire = require('rewire');
-const path = require('path');
+let utils = require('rsx-common');
+let chai = require('chai');
+let rewire = require('rewire');
+let sinon = require('sinon');
+let path = require('path');
 
-const expect = chai.expect;
+let expect = chai.expect;
+let log = utils.log;
 
-const command = require('../src/newProject');
+log.level = 'silent';
 
 describe('new', () => {
 
@@ -38,7 +40,7 @@ describe('new', () => {
                 },
             });
 
-            const spy = sinon.spy();
+            let spy = sinon.spy();
             commandMock('TestApp', spy);
 
             expect(spy.calledOnce).to.be.true;
