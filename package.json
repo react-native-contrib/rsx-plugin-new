@@ -4,11 +4,11 @@
   "description": "A project creation plugin for the RSX CLI utility",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint index.js src/ tests/ && istanbul cover _mocha --recursive tests/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-native-contrib/rsx-plugin-new.git"
+    "url": "git+https://github.com/react-native-contrib/rsx-plugin-new.git"
   },
   "author": "Hassan Khan <contact@hassankhan.me>",
   "license": "MIT",
@@ -17,8 +17,17 @@
   },
   "homepage": "https://github.com/react-native-contrib/rsx-plugin-new#readme",
   "dependencies": {
-    "rsx-common": "^0.1.3",
+    "rsx-common": "^0.1.7",
     "rsx-generator-base": "^0.1.2",
     "yeoman-environment": "^1.6.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.5",
+    "chai": "^3.5.0",
+    "eslint": "^1.10.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5",
+    "rewire": "^2.5.1",
+    "sinon": "^1.17.4"
   }
 }

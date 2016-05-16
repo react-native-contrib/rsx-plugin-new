@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = [{
   func: require('./src/newProject'),
   description: 'Create a new project',
