@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/react-native-contrib/rsx-plugin-new#readme",
   "dependencies": {
-    "rsx-common": "^0.1.7",
+    "rsx-common": "^0.1.8",
     "rsx-generator-base": "^0.1.2",
     "yeoman-environment": "^1.6.1"
   },

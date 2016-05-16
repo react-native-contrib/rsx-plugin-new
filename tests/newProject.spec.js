@@ -41,7 +41,7 @@ describe('new', () => {
             const spy = sinon.spy();
             commandMock('TestApp', spy);
 
-            expect(spy.calledOnce).to.deep.equals(true);
+            expect(spy.calledOnce).to.be.true;
         });
 
 });
